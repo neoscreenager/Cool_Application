@@ -18,7 +18,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
-import com.google.android.gms.plus.model.people.Person;
+
 
 
 public class MainActivity extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -42,8 +42,8 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
     private TextView mStatus;
 
     /* Keys for persisting instance variables in savedInstanceState */
-    private static final String KEY_IS_RESOLVING = "is_resolving";
-    private static final String KEY_SHOULD_RESOLVE = "should_resolve";
+   /* private static final String KEY_IS_RESOLVING = "is_resolving";
+    private static final String KEY_SHOULD_RESOLVE = "should_resolve";*/
 
 
     @Override
@@ -109,7 +109,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         } else {
             // Show the signed-out UI
             //showSignedOutUI();
-            Toast.makeText(MainActivity.this, "Signed out!!!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Signed out!!!", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -171,6 +171,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
                 Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
                 mGoogleApiClient.disconnect();
                 updateUI(false);
+                Toast.makeText(MainActivity.this, "Signed out!!!", Toast.LENGTH_SHORT).show();
 
             }
         }
