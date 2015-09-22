@@ -18,6 +18,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 
 
 public class MainActivity extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -138,9 +139,13 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
 
     private void updateUI(boolean isSignedIn) {
         if (isSignedIn) {
+
+            //show signed-in user's account name
+            String accountName = Plus.AccountApi.getAccountName(mGoogleApiClient);
+            mStatus.setText(getString(R.string.signed_in_fmt, accountName));
             // Show signed-in user's name
-            String name = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient).getDisplayName();
-            mStatus.setText(getString(R.string.signed_in_fmt, name));
+            //String name = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient).getDisplayName();
+            //mStatus.setText(getString(R.string.signed_in_fmt, name));
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
