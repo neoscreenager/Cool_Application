@@ -52,6 +52,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_main);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
+        findViewById(R.id.sign_out_button).setVisibility(View.GONE);
         // Large sign-in
         ((SignInButton) findViewById(R.id.sign_in_button)).setSize(SignInButton.SIZE_WIDE);
         // Set up view instances
@@ -149,15 +150,14 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
         } else {
             // Show signed-out message
             mStatus.setText(R.string.signed_out);
 
             // Set button visibility
-            findViewById(R.id.sign_in_button).setEnabled(true);
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+            findViewById(R.id.sign_out_button).setVisibility(View.GONE);
         }
     }
 
@@ -170,6 +170,8 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
             if (mGoogleApiClient.isConnected()) {
                 Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
                 mGoogleApiClient.disconnect();
+                updateUI(false);
+
             }
         }
     }
